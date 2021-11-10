@@ -1,2 +1,9 @@
-const data = sessionStorage.getItem("data");
-console.log(JSON.parse(data));
+const data = JSON.parse(sessionStorage.getItem("data"));
+
+function credit() {
+  console.log("plus");
+}
+
+function debit() {
+  console.log("minus");
+}

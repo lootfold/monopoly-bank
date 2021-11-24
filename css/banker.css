@@ -1,0 +1,26 @@
+main {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+div:first-child {
+  flex: 1 0 100%;
+  align-self: center;
+}
+
+div > p {
+  margin: auto;
+}
+
+main > div {
+  padding: 0.5em;
+}
+
+span {
+  font-weight: bold;
+  text-transform: uppercase;
+}
+
+svg {
+  margin: 0 0.3em;
+}

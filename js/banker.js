@@ -10,7 +10,6 @@ function credit(index) {
   clearAllNode();
   displayBankBalance();
   addNodesForPlayers();
-  console.log(data);
 }
 
 function debit(index) {
@@ -23,7 +22,6 @@ function debit(index) {
   clearAllNode();
   displayBankBalance();
   addNodesForPlayers();
-  console.log(data);
 }
 
 window.onload = handleWindowLoad;

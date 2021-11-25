@@ -2,12 +2,20 @@ const data = JSON.parse(sessionStorage.getItem("data"));
 
 function credit(index) {
   // ask user to input credit amount
-  const amount = parseInt(prompt("Amount: ", "ex: 100"));
+  const creditAmount = parseInt(
+    prompt("Yay!! you get money from the bank.\nEnter the amount : ", "ex: 100")
+  );
+
+  // validate credit amount
+  if (data.banksBalance < creditAmount) {
+    alert("OOPS!! Looks like the bank is empty.");
+    return;
+  }
 
   // transfer amount from bank to player
   const playerAtIndex = data.players[index];
-  playerAtIndex.balance += amount;
-  data.banksBalance -= amount;
+  playerAtIndex.balance += creditAmount;
+  data.banksBalance -= creditAmount;
 
   // rerender all nodes
   clearAllNode();
@@ -17,12 +25,19 @@ function credit(index) {
 
 function debit(index) {
   // ask user to input debit amount
-  const amount = parseInt(prompt("Amount: ", "ex: 100"));
+  const debitAmount = parseInt(prompt("Amount: ", "ex: 100"));
+
+  const playerAtIndex = data.players[index];
+
+  // validate debit amount
+  if (playerAtIndex.balance < debitAmount) {
+    alert("OOPS!! Looks like you don't have enough balance. :(");
+    return;
+  }
 
   // transfer amount from player to bank
-  const playerAtIndex = data.players[index];
-  playerAtIndex.balance -= amount;
-  data.banksBalance += amount;
+  playerAtIndex.balance -= debitAmount;
+  data.banksBalance += debitAmount;
 
   // rerender all nodes
   clearAllNode();

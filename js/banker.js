@@ -27,6 +27,7 @@ function debit(index) {
 window.onload = handleWindowLoad;
 
 function handleWindowLoad() {
+  console.log(data);
   delete data.eachPlayerStartingBalance;
   displayBankBalance();
   addNodesForPlayers();
@@ -35,7 +36,7 @@ function handleWindowLoad() {
 function displayBankBalance() {
   const div = document.createElement("div");
 
-  const bankLabel = document.createElement("p");
+  const bankLabel = document.createElement("span");
   bankLabel.innerHTML = "Bank";
   div.appendChild(bankLabel);
 
@@ -43,50 +44,70 @@ function displayBankBalance() {
   bankBalanceElement.innerHTML = `Balance: ${data.banksBalance}`;
   div.appendChild(bankBalanceElement);
 
-  const mainNode = document.querySelector("main");
-  mainNode.appendChild(div);
+  div.classList.add("bank");
+
+  const bankContainerEl = document.getElementById("bank-container");
+  bankContainerEl.appendChild(div);
 }
 
 function addNodesForPlayers() {
-  const mainNode = document.querySelector("main");
+  const playerContainerEl = document.getElementById("player-container");
   const players = data.players;
 
   for (let i = 0; i < players.length; i++) {
     const node = generateNodeForPlayer(i, players[i]);
-    mainNode.appendChild(node);
+    playerContainerEl.appendChild(node);
   }
 }
 
 function generateNodeForPlayer(index, player) {
   const div = document.createElement("div");
 
+  // create span for player name
   const playerNameElement = document.createElement("span");
-  playerNameElement.innerHTML = player.name;
+  playerNameElement.innerHTML = `${index + 1}. ${player.name}`;
   div.appendChild(playerNameElement);
 
+  // create p for player balance
+  const playerBalanceElement = document.createElement("p");
+  playerBalanceElement.innerHTML = `Balance: ${player.balance}`;
+  div.appendChild(playerBalanceElement);
+
+  // create div to contain icon
+  const iconContainer = document.createElement("div");
+  iconContainer.classList.add("icons-container");
+
+  // create icon elements and append to icon container
   const plusIcon = document.createElement("i");
   plusIcon.classList.add("fas", "fa-plus-square");
   plusIcon.id = `credit_${index}`;
   plusIcon.setAttribute("onclick", `credit(${index})`);
-  div.appendChild(plusIcon);
+  iconContainer.appendChild(plusIcon);
 
   const minusIcon = document.createElement("i");
   minusIcon.classList.add("fas", "fa-minus-square");
   minusIcon.id = `debit_${index}`;
   minusIcon.setAttribute("onclick", `debit(${index})`);
-  div.appendChild(minusIcon);
+  iconContainer.appendChild(minusIcon);
 
-  const playerBalanceElement = document.createElement("p");
-  playerBalanceElement.innerHTML = `Balance: ${player.balance}`;
-  div.appendChild(playerBalanceElement);
+  div.appendChild(iconContainer);
+
+  div.classList.add("player");
 
   return div;
 }
 
 function clearAllNode() {
-  const main = document.querySelector("main");
+  // get reference to containers
+  const bankContainer = document.getElementById("bank-container");
+  const playerContainer = document.getElementById("player-container");
 
-  while (main.firstChild) {
-    main.removeChild(main.firstChild);
+  // remove child nodes from both containers
+  while (bankContainer.firstChild) {
+    bankContainer.removeChild(bankContainer.firstChild);
+  }
+
+  while (playerContainer.firstChild) {
+    playerContainer.removeChild(playerContainer.firstChild);
   }
 }

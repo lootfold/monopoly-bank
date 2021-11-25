@@ -1,26 +1,47 @@
-main {
+.container {
+  max-width: 400px;
+  margin: 0 auto;
+}
+
+#bank-container {
   display: flex;
-  flex-flow: row wrap;
+  justify-content: center;
 }
 
-div:first-child {
-  flex: 1 0 100%;
-  align-self: center;
+.bank {
+  margin: 0 auto;
+  padding: 0.3rem 0.7rem;
 }
 
-div > p {
-  margin: auto;
+#player-container {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
 }
 
-main > div {
-  padding: 0.5em;
+.player {
+  margin-top: 0.3rem;
+  padding: 0.3rem 0.7rem;
 }
 
-span {
-  font-weight: bold;
+.player > span,
+.bank > span {
+  display: block;
+  margin: 0.2rem 0;
   text-transform: uppercase;
+  font-weight: bold;
 }
 
-svg {
-  margin: 0 0.3em;
+.player > p,
+.bank > p {
+  margin: 0.2rem 0;
+}
+
+.icons-container {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.icons-container > svg {
+  margin-right: 0.5rem;
 }

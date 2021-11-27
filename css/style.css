@@ -12,6 +12,7 @@
 body {
   font-family: "Roboto", sans-serif;
   margin: 0;
+  color: var(--neonBlue);
 }
 
 h1 {
@@ -22,7 +23,7 @@ h1 {
 
 h2 {
   font-size: 1.4rem;
-  color: var(--blue);
+  color: var(--neonBlue);
   align-self: center;
   margin-bottom: 0;
 }
@@ -32,7 +33,7 @@ body {
 }
 
 .navBar {
-  background-color: #1919a6;
+  background-color: var(--neonBlue);
   display: flex;
 }
 
@@ -110,4 +111,54 @@ form {
 
 .error:focus {
   box-shadow: 0.2rem 0.2rem;
+}
+
+#bankContainer {
+  display: flex;
+  justify-content: center;
+}
+
+.bank,
+.player {
+  padding: 0.3rem 0.7rem;
+}
+
+#playerContainer {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+}
+
+.player {
+  margin-top: 0.3rem;
+}
+
+.player > span,
+.bank > span {
+  display: block;
+  margin: 0.2rem 0;
+  text-transform: uppercase;
+  font-weight: bold;
+}
+
+.player > p,
+.bank > p {
+  margin: 0.2rem 0;
+}
+
+.icons-container {
+  display: flex;
+  justify-content: flex-start;
+}
+
+.icons-container > svg {
+  margin-right: 0.5rem;
+}
+
+.fa-plus-square {
+  color: var(--electricGreen);
+}
+
+.fa-minus-square {
+  color: var(--red);
 }

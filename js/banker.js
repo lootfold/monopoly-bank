@@ -6,6 +6,11 @@ function credit(index) {
     prompt("Yay!! you get money from the bank.\nEnter the amount : ", "ex: 100")
   );
 
+  if (!creditAmount) {
+    alert("Invalid value :(\nTry again!!");
+    return;
+  }
+
   // validate credit amount
   if (data.banksBalance < creditAmount) {
     alert("OOPS!! Looks like the bank is empty.");
@@ -26,6 +31,11 @@ function credit(index) {
 function debit(index) {
   // ask user to input debit amount
   const debitAmount = parseInt(prompt("Amount: ", "ex: 100"));
+
+  if (!debitAmount) {
+    alert("Invalid value :(\nTry again!!");
+    return;
+  }
 
   const playerAtIndex = data.players[index];
 
@@ -73,13 +83,13 @@ function addNodeForBank() {
   div.classList.add("bank");
 
   // add element to page
-  const bankContainerEl = document.getElementById("bank-container");
+  const bankContainerEl = document.getElementById("bankContainer");
   bankContainerEl.appendChild(div);
 }
 
 function addNodesForPlayers() {
   // get ref to player container element
-  const playerContainerEl = document.getElementById("player-container");
+  const playerContainerEl = document.getElementById("playerContainer");
   const players = data.players;
 
   // generate player nodes and add to the page
@@ -131,14 +141,8 @@ function generateNodeForPlayer(index, player) {
 
 function clearAllNode() {
   // get reference to containers
-  const bankContainer = document.getElementById("bank-container");
-  const playerContainer = document.getElementById("player-container");
+  const bankContainer = document.getElementById("bankContainer");
+  const playerContainer = document.getElementById("playerContainer");
 
-  // remove child nodes from both containers
-  while (bankContainer.firstChild) {
-    bankContainer.removeChild(bankContainer.firstChild);
-  }
-  while (playerContainer.firstChild) {
-    playerContainer.removeChild(playerContainer.firstChild);
-  }
+  bankContainer.innerHTML = playerContainer.innerHTML = "";
 }

@@ -1,41 +1,113 @@
+@import url("https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&display=swap");
+
+:root {
+  --neonBlue: #1919a6;
+  --blue: #2121de;
+  --tumbleweed: #dea185;
+  --red: #fd0000;
+  --electricGreen: #00ff00;
+  --yellow: #ffff00;
+}
+
+body {
+  font-family: "Roboto", sans-serif;
+  margin: 0;
+}
+
+h1 {
+  font-size: 3rem;
+  color: var(--yellow);
+  margin: 0 auto;
+}
+
+h2 {
+  font-size: 1.4rem;
+  color: var(--blue);
+  align-self: center;
+  margin-bottom: 0;
+}
+
+body {
+  font-size: 1.2rem;
+}
+
+.navBar {
+  background-color: #1919a6;
+  display: flex;
+}
+
 .hidden {
   display: none;
 }
 
 .container {
-  max-width: 400px;
+  padding: 2em 0;
+  max-width: 600px;
   margin: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 
-.form-group {
+form {
+  align-self: center;
+  display: flex;
+  flex-direction: column;
+}
+
+.form__group {
   margin: 0.5em 0;
+  padding: 0.3em 0;
+  display: flex;
+  flex-direction: column;
 }
 
-label {
+.form__label {
   display: block;
+  color: var(--blue);
+  align-self: center;
 }
 
-input:invalid {
-  background-color: #ffdddd;
+.form__control {
+  align-self: center;
+  outline: none;
+  margin-top: 0.2rem;
+  height: 1.8rem;
+  width: 15rem;
+  padding: 0 0.5rem;
+  border-radius: 0.8rem;
+  font-size: 1.2rem;
+  color: --var(--neonBlue);
 }
 
-form:invalid {
-  border: 5px solid #ffdddd;
+.form__control:focus {
+  border: 2px solid var(--neonBlue);
+  box-shadow: 0.2rem 0.2rem;
 }
 
-input:valid {
-  background-color: #ddffdd;
+.button {
+  height: 2rem;
+  padding: 0.2rem 0.7rem;
+  border-radius: 0.8rem;
+  border: none;
+  font-size: 1.4rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  background-color: var(--electricGreen);
+  color: var(--yellow);
 }
 
-form:valid {
-  border: 5px solid #ddffdd;
+.button:hover,
+.button:focus {
+  color: var(--neonBlue);
+  box-shadow: 0.2rem 0.2rem;
 }
 
-input:required {
-  border-color: #800000;
-  border-width: 3px;
+.error {
+  background-color: var(--red);
+  border: 2px solid var(--red);
 }
 
-input:required:invalid {
-  border-color: #c00000;
+.error:focus {
+  box-shadow: 0.2rem 0.2rem;
 }

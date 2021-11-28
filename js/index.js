@@ -78,7 +78,7 @@ function handleWindowLoad() {
     }
 
     // save game data in session storage
-    sessionStorage.setItem("data", JSON.stringify(data));
+    localStorage.setItem("data", JSON.stringify(data));
 
     // navigate to banker page
     window.location.href = "banker.html";

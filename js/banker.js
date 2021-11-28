@@ -1,4 +1,4 @@
-const data = JSON.parse(sessionStorage.getItem("data"));
+const data = JSON.parse(localStorage.getItem("data"));
 
 function credit(index) {
   // ask user to input credit amount

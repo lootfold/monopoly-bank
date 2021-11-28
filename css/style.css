@@ -17,10 +17,17 @@ body {
 
 h1 {
   font-size: 3rem;
-  color: var(--yellow);
   margin: 0 auto;
 }
 
+h1 > a {
+  color: var(--yellow);
+  text-decoration: none;
+}
+h1 > a:hover {
+  color: var(--tumbleweed);
+  text-decoration: none;
+}
 h2 {
   font-size: 1.4rem;
   color: var(--neonBlue);

@@ -24,10 +24,12 @@ h1 > a {
   color: var(--yellow);
   text-decoration: none;
 }
+
 h1 > a:hover {
   color: var(--tumbleweed);
   text-decoration: none;
 }
+
 h2 {
   font-size: 1.4rem;
   color: var(--neonBlue);
@@ -114,6 +116,11 @@ form > p:first-of-type {
   text-transform: uppercase;
   background-color: var(--electricGreen);
   color: var(--yellow);
+}
+
+.button-cancel {
+  margin-top: 0.5em;
+  background-color: var(--tumbleweed);
 }
 
 .button:hover,

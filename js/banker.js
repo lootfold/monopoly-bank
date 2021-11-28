@@ -1,59 +1,10 @@
 const data = JSON.parse(localStorage.getItem("data"));
-
-function credit(index) {
-  // ask user to input credit amount
-  const creditAmount = parseInt(
-    prompt("Yay!! you get money from the bank.\nEnter the amount : ", "ex: 100")
-  );
-
-  if (!creditAmount) {
-    alert("Invalid value :(\nTry again!!");
-    return;
-  }
-
-  // validate credit amount
-  if (data.banksBalance < creditAmount) {
-    alert("OOPS!! Looks like the bank is empty.");
-    return;
-  }
-
-  // transfer amount from bank to player
-  const playerAtIndex = data.players[index];
-  playerAtIndex.balance += creditAmount;
-  data.banksBalance -= creditAmount;
-
-  // rerender all nodes
-  clearAllNode();
-  addNodeForBank();
-  addNodesForPlayers();
-}
-
-function debit(index) {
-  // ask user to input debit amount
-  const debitAmount = parseInt(prompt("Amount: ", "ex: 100"));
-
-  if (!debitAmount) {
-    alert("Invalid value :(\nTry again!!");
-    return;
-  }
-
-  const playerAtIndex = data.players[index];
-
-  // validate debit amount
-  if (playerAtIndex.balance < debitAmount) {
-    alert("OOPS!! Looks like you don't have enough balance. :(");
-    return;
-  }
-
-  // transfer amount from player to bank
-  playerAtIndex.balance -= debitAmount;
-  data.banksBalance += debitAmount;
-
-  // rerender all nodes
-  clearAllNode();
-  addNodeForBank();
-  addNodesForPlayers();
-}
+const CREDIT = "CREDIT";
+const DEBIT = "DEBIT";
+let transactionType;
+let playerForTransaction;
+let amountForTransaction;
+let amountForm;
 
 window.onload = handleWindowLoad;
 
@@ -61,6 +12,84 @@ function handleWindowLoad() {
   // display data
   addNodeForBank();
   addNodesForPlayers();
+
+  amountForm = document.forms.amountForm;
+  amountForm.onsubmit = handleAmountFormSubmit;
+  amountForm.onreset = handleFormReset;
+}
+
+function handleFormReset() {
+  hideAmountForm();
+  playerForTransaction = 0;
+  amountForTransaction = 0;
+  return false;
+}
+
+function handleAmountFormSubmit() {
+  amountForTransaction = parseInt(amountForm.amount.value);
+  if (transactionType == CREDIT) {
+    credit();
+  } else if (transactionType == DEBIT) {
+    debit();
+  }
+  return false;
+}
+
+function handleCreditClick(index) {
+  transactionType = CREDIT;
+  playerForTransaction = index;
+  showAmountForm();
+}
+
+function handleDebitClick(index) {
+  transactionType = DEBIT;
+  playerForTransaction = index;
+  showAmountForm();
+}
+
+function credit() {
+  // validate credit amount
+  if (data.banksBalance < amountForTransaction) {
+    alert("OOPS!! Looks like the bank doesn't have enough balance.");
+    return;
+  }
+
+  // transfer amount from bank to player
+  const playerAtIndex = data.players[playerForTransaction];
+  playerAtIndex.balance += amountForTransaction;
+  data.banksBalance -= amountForTransaction;
+
+  // save game date
+  localStorage.setItem("data", JSON.stringify(data));
+
+  // rerender all nodes
+  clearAllNode();
+  addNodeForBank();
+  addNodesForPlayers();
+  hideAmountForm();
+}
+
+function debit() {
+  const playerAtIndex = data.players[playerForTransaction];
+
+  // validate debit amount
+  if (playerAtIndex.balance < amountForTransaction) {
+    alert("OOPS!! Looks like you don't have enough balance. :(");
+    return;
+  }
+
+  // transfer amount from player to bank
+  playerAtIndex.balance -= amountForTransaction;
+  data.banksBalance += amountForTransaction;
+
+  // save game date
+  localStorage.setItem("data", JSON.stringify(data));
+
+  // rerender all nodes
+  clearAllNode();
+  addNodeForBank();
+  addNodesForPlayers();
+  hideAmountForm();
 }
 
 function addNodeForBank() {
@@ -117,14 +146,14 @@ function generateNodeForPlayer(index, player) {
   const plusIcon = document.createElement("i");
   plusIcon.classList.add("fas", "fa-plus-square");
   plusIcon.id = `credit_${index}`;
-  plusIcon.setAttribute("onclick", `credit(${index})`);
+  plusIcon.setAttribute("onclick", `handleCreditClick(${index})`);
   iconContainer.appendChild(plusIcon);
 
   // create - icon elements and add to icon container
   const minusIcon = document.createElement("i");
   minusIcon.classList.add("fas", "fa-minus-square");
   minusIcon.id = `debit_${index}`;
-  minusIcon.setAttribute("onclick", `debit(${index})`);
+  minusIcon.setAttribute("onclick", `handleDebitClick(${index})`);
   iconContainer.appendChild(minusIcon);
 
   // add icon container to player node
@@ -142,4 +171,12 @@ function clearAllNode() {
   const playerContainer = document.getElementById("playerContainer");
 
   bankContainer.innerHTML = playerContainer.innerHTML = "";
+}
+
+function showAmountForm() {
+  amountForm.classList.remove("hidden");
+}
+
+function hideAmountForm() {
+  amountForm.classList.add("hidden");
 }

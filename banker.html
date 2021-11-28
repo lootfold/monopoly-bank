@@ -21,6 +21,21 @@
     <main class="container">
       <div id="bankContainer"></div>
       <div id="playerContainer"></div>
+      <form class="hidden" id="amountForm">
+        <div class="form__group">
+          <label class="form__label" for="amount">Amount</label>
+          <input
+            class="form__control"
+            type="number"
+            name="amount"
+            id="amount"
+            min="1"
+            required
+          />
+        </div>
+        <button type="submit" class="button">Go</button>
+        <button type="reset" class="button button-cancel">Cancel</button>
+      </form>
     </main>
   </body>
 </html>

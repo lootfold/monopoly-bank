@@ -1,4 +1,4 @@
-const eachPlayerStartingBalance = 1500;
+let eachPlayerStartingBalance = 1500;
 
 // object to store game data
 data = {
@@ -51,6 +51,8 @@ function handleWindowLoad() {
 
   function handleGameDetailsSubmit() {
     // store balance input to game data
+    eachPlayerStartingBalance = parseInt(balanceForm.playerBalance.value);
+    data.banksBalance = parseInt(balanceForm.totalAmount.value);
     data.noOfPlayers = parseInt(balanceForm.noOfPlayers.value);
     data.banksBalance -= data.noOfPlayers * eachPlayerStartingBalance;
 

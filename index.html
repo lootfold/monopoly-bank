@@ -18,8 +18,37 @@
       <form id="gameDetails">
         <h2>Enter Game Details</h2>
         <!-- https://hasbro-new.custhelp.com/app/answers/detail/a_id/69/~/how-much-money-comes-in-a-monopoly-game%3F -->
-        <p>Total money available in the game is $20,580.</p>
-        <p>Each player will be start with $1,500</p>
+        <p>Default Values:</p>
+        <p>Total money available in the game should be $20,580.</p>
+        <p>Each player should start with $1,500</p>
+
+        <!-- total amount -->
+        <div class="form__group">
+          <label for="totalAmount" class="form__label">Total Balance</label>
+          <input
+            type="number"
+            class="form__control"
+            id="totalAmount"
+            name="totalAmount"
+            value="20580"
+            required
+            min="1"
+          />
+        </div>
+
+        <!-- starting balance for each player -->
+        <div class="form__group">
+          <label for="playerBalance" class="form__label">Player Balance</label>
+          <input
+            type="number"
+            class="form__control"
+            name="playerBalance"
+            id="playerBalance"
+            required
+            min="1"
+            value="1500"
+          />
+        </div>
 
         <!-- no of players -->
         <div class="form__group">
@@ -39,7 +68,7 @@
       </form>
 
       <form id="playersForm" class="hidden">
-        <h2>Enter Player Names</h3>
+        <h2>Enter Player Names</h2>
         <div id="playersFormInputContainer">
           <!-- place dynamically generated input fields to get player names -->
         </div>

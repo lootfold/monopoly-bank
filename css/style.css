@@ -56,6 +56,15 @@ form {
   flex-direction: column;
 }
 
+form > p {
+  align-self: center;
+  margin: 0;
+}
+
+form > p:first-of-type {
+  margin-top: 1em;
+}
+
 .form__group {
   margin: 0.5em 0;
   padding: 0.3em 0;
@@ -87,7 +96,9 @@ form {
 }
 
 .button {
+  align-self: center;
   height: 2rem;
+  width: 16rem;
   padding: 0.2rem 0.7rem;
   border-radius: 0.8rem;
   border: none;

@@ -15,14 +15,8 @@ function handleWindowLoad() {
 
   amountForm = document.forms.amountForm;
   amountForm.onsubmit = handleAmountFormSubmit;
-  amountForm.onreset = handleFormReset;
-}
-
-function handleFormReset() {
-  hideAmountForm();
-  playerForTransaction = 0;
-  amountForTransaction = 0;
-  return false;
+  amountForm.onreset = hideAmountForm;
+  addEventListenersForValidation(amountForm);
 }
 
 function handleAmountFormSubmit() {
@@ -179,4 +173,8 @@ function showAmountForm() {
 
 function hideAmountForm() {
   amountForm.classList.add("hidden");
+  playerForTransaction = 0;
+  amountForTransaction = 0;
+  amountForm.amount.value = null;
+  return false;
 }

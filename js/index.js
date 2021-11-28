@@ -1,8 +1,9 @@
+let eachPlayerStartingBalance;
+
 // object to store game data
 data = {
   noOfPlayers: 0,
   banksBalance: 0,
-  eachPlayerStartingBalance: 0,
   players: [],
 };
 
@@ -51,7 +52,7 @@ function handleWindowLoad() {
   function handleGameDetailsSubmit() {
     // store balance input to game data
     data.banksBalance = parseInt(balanceForm.bankBalance.value);
-    data.eachPlayerStartingBalance = parseInt(balanceForm.playerBalance.value);
+    eachPlayerStartingBalance = parseInt(balanceForm.playerBalance.value);
     data.noOfPlayers = parseInt(balanceForm.noOfPlayers.value);
 
     // display form to get player details
@@ -72,7 +73,7 @@ function handleWindowLoad() {
       if (element.type === "text") {
         data.players.push({
           name: element.value,
-          balance: data.eachPlayerStartingBalance,
+          balance: eachPlayerStartingBalance,
         });
       }
     }

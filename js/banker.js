@@ -58,9 +58,6 @@ function debit(index) {
 window.onload = handleWindowLoad;
 
 function handleWindowLoad() {
-  // remove unnecessary prop
-  delete data.eachPlayerStartingBalance;
-
   // display data
   addNodeForBank();
   addNodesForPlayers();

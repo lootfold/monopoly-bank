@@ -69,7 +69,7 @@ function handleWindowLoad() {
     );
     playersInputContainer.innerHTML = "";
 
-    // generate new fileds based on the input & add to page
+    // generate new fields based on the input & add to page
     for (let i = 1; i <= data.noOfPlayers; i++) {
       const field = generatePlayerInput(i);
       playersInputContainer.appendChild(field);

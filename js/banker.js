@@ -29,12 +29,16 @@ function handleAmountFormSubmit() {
   return false;
 }
 
+// called on + button click
+// takes player index as parameter
 function handleCreditClick(index) {
   transactionType = CREDIT;
   playerForTransaction = index;
   showAmountForm();
 }
 
+// called on - button click
+// takes player index as parameter
 function handleDebitClick(index) {
   transactionType = DEBIT;
   playerForTransaction = index;
@@ -140,6 +144,7 @@ function generateNodeForPlayer(index, player) {
   const plusIcon = document.createElement("i");
   plusIcon.classList.add("fas", "fa-plus-square");
   plusIcon.id = `credit_${index}`;
+  // set onclick attribute and pass player index as param
   plusIcon.setAttribute("onclick", `handleCreditClick(${index})`);
   iconContainer.appendChild(plusIcon);
 
@@ -147,6 +152,7 @@ function generateNodeForPlayer(index, player) {
   const minusIcon = document.createElement("i");
   minusIcon.classList.add("fas", "fa-minus-square");
   minusIcon.id = `debit_${index}`;
+  // set onclick attribute and pass player index as param
   minusIcon.setAttribute("onclick", `handleDebitClick(${index})`);
   iconContainer.appendChild(minusIcon);
 

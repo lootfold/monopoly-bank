@@ -104,6 +104,28 @@ form > p:first-of-type {
   box-shadow: 0.2rem 0.2rem;
 }
 
+#message {
+  text-align: center;
+}
+
+.btn {
+  height: 2rem;
+  width: 6rem;
+  padding: 0.2rem 0.7rem;
+  border-radius: 0.8rem;
+  border: none;
+  font-size: 1.4rem;
+  font-weight: bold;
+  text-transform: uppercase;
+  background-color: var(--electricGreen);
+  color: var(--yellow);
+  left: 50%;
+  position: relative;
+  transform: translateX(-50%);
+  margin-bottom: 2rem;
+  cursor: pointer;
+}
+
 .button {
   align-self: center;
   height: 2rem;
@@ -124,7 +146,9 @@ form > p:first-of-type {
 }
 
 .button:hover,
-.button:focus {
+.button:focus,
+.btn:hover,
+.btn:focus {
   color: var(--neonBlue);
   box-shadow: 0.2rem 0.2rem;
 }

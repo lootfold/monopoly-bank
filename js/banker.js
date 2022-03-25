@@ -21,11 +21,16 @@ function handleWindowLoad() {
 
 function handleAmountFormSubmit() {
   amountForTransaction = parseInt(amountForm.amount.value);
+
+  let message = "";
   if (transactionType == CREDIT) {
-    credit();
+    message = credit();
   } else if (transactionType == DEBIT) {
-    debit();
+    message = debit();
   }
+
+  displayMessage(message);
+
   return false;
 }
 
@@ -48,8 +53,7 @@ function handleDebitClick(index) {
 function credit() {
   // validate credit amount
   if (data.banksBalance < amountForTransaction) {
-    alert("OOPS!! Looks like the bank doesn't have enough balance.");
-    return;
+    return "OOPS!! Looks like the bank doesn't have enough balance.";
   }
 
   // transfer amount from bank to player
@@ -65,6 +69,8 @@ function credit() {
   addNodeForBank();
   addNodesForPlayers();
   hideAmountForm();
+
+  return "Success";
 }
 
 function debit() {
@@ -72,8 +78,7 @@ function debit() {
 
   // validate debit amount
   if (playerAtIndex.balance < amountForTransaction) {
-    alert("OOPS!! Looks like you don't have enough balance. :(");
-    return;
+    return "OOPS!! Looks like you don't have enough balance. :(";
   }
 
   // transfer amount from player to bank
@@ -88,6 +93,8 @@ function debit() {
   addNodeForBank();
   addNodesForPlayers();
   hideAmountForm();
+
+  return "Success";
 }
 
 function addNodeForBank() {
@@ -183,4 +190,10 @@ function hideAmountForm() {
   amountForTransaction = 0;
   amountForm.amount.value = null;
   return false;
+}
+
+function displayMessage(message) {
+  const messageEl = document.getElementById("message");
+  messageEl.classList.remove("hidden");
+  messageEl.innerHTML = message;
 }

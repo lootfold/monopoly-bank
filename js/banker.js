@@ -13,10 +13,20 @@ function handleWindowLoad() {
   addNodeForBank();
   addNodesForPlayers();
 
+  const hideMsgBtn = document.getElementById("btnMessage");
+  hideMsgBtn.onclick = hideMessage;
+
   amountForm = document.forms.amountForm;
   amountForm.onsubmit = handleAmountFormSubmit;
   amountForm.onreset = hideAmountForm;
   addEventListenersForValidation(amountForm);
+
+  hideMessage();
+}
+
+function hideMessage() {
+  const messageContainer = document.getElementById("messageContainer");
+  messageContainer.classList.add("hidden");
 }
 
 function handleAmountFormSubmit() {
@@ -193,7 +203,9 @@ function hideAmountForm() {
 }
 
 function displayMessage(message) {
+  const messageContainer = document.getElementById("messageContainer");
+  messageContainer.classList.remove("hidden");
+
   const messageEl = document.getElementById("message");
-  messageEl.classList.remove("hidden");
   messageEl.innerHTML = message;
 }

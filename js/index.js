@@ -91,8 +91,8 @@ function handleWindowLoad() {
 
     // create text field for player name
     const inputField = document.createElement("input");
-    inputField.id = `${idStr}_${playerNo}}`;
-    inputField.name = `${idStr}_${playerNo}}`;
+    inputField.id = `${idStr}_${playerNo}`;
+    inputField.name = `${idStr}_${playerNo}`;
     inputField.type = "text";
     inputField.required = true;
     inputField.minLength = 3;
